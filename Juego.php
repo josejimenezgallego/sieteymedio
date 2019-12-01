@@ -63,7 +63,7 @@ class Juego
     }
 
     // GUARDA BARAJA
-    public function setJugador($baraja)   
+    public function setBaraja($baraja)   
     {
          $this->baraja=$baraja;         
     }
