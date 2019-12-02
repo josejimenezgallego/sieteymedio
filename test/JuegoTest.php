@@ -5,10 +5,6 @@ require_once 'vendor/autoload.php';
 
 use PHPUnit\Framework\TestCase;
 
-
-
-//require_once ("Juego.php");
-
 class JuegoTest extends TestCase
 {
 	public function testCorrecto()
