@@ -19,7 +19,6 @@ class Juego
       {
         foreach ($numeros as $numero) 
         {
-           //$baraja[] = array("numero"=>$numero, "palo"=>$palo);
            $this->baraja[] = new Carta($palo, $numero);
         }
       }
