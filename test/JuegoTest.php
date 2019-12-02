@@ -1,9 +1,13 @@
-<?php
+<?php 
 namespace juego;
+
+require_once 'vendor/autoload.php';
 
 use PHPUnit\Framework\TestCase;
 
-require_once ("Juego.php");
+
+
+//require_once ("Juego.php");
 
 class JuegoTest extends TestCase
 {

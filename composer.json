@@ -1,0 +1,15 @@
+{
+    "name": "jose/ejercicio2",
+    "description": "juego siete y medio",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Jose Jimenez",
+            "email": "jose.jimenez@davanter.es"
+        }
+    ],
+     "autoload" : {       
+       "files": ["Juego.php","Carta.php","Jugador.php"]
+    },
+    "require": {}
+}

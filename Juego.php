@@ -1,5 +1,6 @@
-<?php
+<?php 
 namespace juego;
+require_once 'vendor/autoload.php';
 
 class Juego 
 {
@@ -76,116 +77,5 @@ class Juego
 
  }
 
-
-class Carta 
-{
-   protected $palo;
-   protected $numero;
-
-   public function __construct($palo,$numero)
-   {      
-        $this->palo = $palo;
-        $this->numero = $numero;
-   }
-
-    // DEVUELVE NOMBRE USUARIO
-    public function getValorCarta()   
-    {
-        switch ($this->numero) 
-        {
-           case "10":
-           case "11":
-           case "12":
-                $puntos=0.5;
-                break;
-            default:
-               $puntos=(int) $numero;
-               break;
-        }             
-        return $puntos;
-    }
-
-    // GUARDA PALO
-    public function setPalo($palo)   
-    {
-         $this->palo=$palo;         
-    }
-
-    // DEVUELVE PALO
-    public function getPalo()   
-    {
-        return $this->palo;
-    }    
-    // GUARDA NÚMERO
-    public function setNumero($numero)   
-    {
-         $this->numero=$numero;         
-    }
-
-    // DEVUELVE NÚMERO
-    public function getNumero()   
-    {
-        return $this->numero;
-    }  
- }
-
-
- class Jugador
-{
-   // ATRIBUTOS
-   public $nombre="";
-   public $jugada="";
-
-   public function __construct($nombre)
-   {      
-      $this->nombre=$nombre;
-      $this->jugada=array();
-   }
-
-    // DEVUELBE TRUE SI LA SUMA DE LAS CARTAS > 7.5
-    public function compruebaPasa()   
-    {
-      if ($this->compruebaJugada()>7.5)
-         return true;
-         else
-         return false; 
-    }
-    
-    // DEVUELBE ACTUAL PUNTUACIÓN
-    public function compruebaJugada()   
-    {
-        $puntos=0;
-
-        foreach($this->jugada as $carta)
-          {
-            $puntos+=$carta->getValorCarta();              
-          }
-        return $puntos;
-       
-    }
-
-    // GUARDA NOMBRE USUARIO
-    public function setNombreUsuario($nombre)   
-    {
-         $this->nombre=$nombre;         
-    }
-
-    // DEVUELVE NOMBRE USUARIO
-    public function getNombreUsuario()   
-    {
-        return $this->nombre;
-    }
-    // GUARDA JUGADA
-    public function setJugadaUsuario($jugada)   
-    {
-         $this->jugada=$jugada;         
-    }
-
-    // DEVUELVE JUGADA
-    public function getJugadaUsuario()   
-    {
-        return $this->jugada;
-    }
- } 
 
  ?>
