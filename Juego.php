@@ -10,7 +10,6 @@ class Juego
    public function __construct($nombre)
    {      
       $this->usuario=new Jugador($nombre);   
-      echo $this->usuario->nombre;    
      
       $palos = array('oros','copas','espadas','bastos');
       $numeros = array("1","2","3","4","5","6","7","10","11","12");
@@ -58,7 +57,6 @@ class Juego
     // DEVUELVE JUGADOR
     public function getJugador()   
     {       
-      echo $this->usuario->nombre;
       return $this->usuario;
     }
 
