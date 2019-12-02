@@ -1,8 +1,9 @@
 <?php
+namespace juego;
+
 use PHPUnit\Framework\TestCase;
 
 require_once ("Juego.php");
-
 
 class JuegoTest extends TestCase
 {
@@ -17,4 +18,6 @@ class JuegoTest extends TestCase
 		$this->assertEquals($jugador->compruebaPasa(),false);
 	}
 }
+
+
 ?>
