@@ -53,7 +53,7 @@ class Juego
     // GUARDA JUGADOR
     public function setJugador($jugador)   
     {
-         $this->jugador=$jugador;         
+         $this->usuario=$jugador;         
     }
 
     // DEVUELVE JUGADOR
