@@ -1,16 +1,15 @@
 <?php
 namespace juego;
 
-use Jugador, Carta;
-
 class Juego 
 {
-   private $baraja;
-   private $usuario;
+   public $baraja;
+   public $usuario;
 
    public function __construct($nombre)
    {      
-      $usuario=new Jugador($nombre);       
+      $this->usuario=new Jugador($nombre);   
+      echo $this->usuario->nombre;    
      
       $palos = array('oros','copas','espadas','bastos');
       $numeros = array("1","2","3","4","5","6","7","10","11","12");
@@ -20,7 +19,7 @@ class Juego
         foreach ($numeros as $numero) 
         {
            //$baraja[] = array("numero"=>$numero, "palo"=>$palo);
-           $baraja[] = new Carta($palo, $numero);
+           $this->baraja[] = new Carta($palo, $numero);
         }
       }
     }
@@ -36,11 +35,11 @@ class Juego
     // PASA LA CARTA SUPERIOR A LA BARAJA DEL JUGUADOR
     public function pideCarta()   
     {
-        if (!$usuario->compruebaPasa())
+        if (!$this->usuario->compruebaPasa())
         {
-           $carta_superior=reset($baraja);   // extrae la primera (superior) carta del mazo
-           $usuario->jugada=array_push($carta_superior);    // añadir la carta a baraja jugador
-           array_shift($baraja);    // elimina primera carta del mazo de cartas
+           $carta_superior=reset($this->baraja);   // extrae la primera (superior) carta del mazo 
+           $this->usuario->jugada[]=new Carta($carta_superior->getPalo(), $carta_superior->getNumero()); // añadir la carta a baraja jugador
+           array_shift($this->baraja);    // elimina primera carta del mazo de cartas
         }
     }
 
@@ -59,6 +58,7 @@ class Juego
     // DEVUELVE JUGADOR
     public function getJugador()   
     {       
+      echo $this->usuario->nombre;
       return $this->usuario;
     }
 
@@ -76,5 +76,116 @@ class Juego
 
  }
 
+
+class Carta 
+{
+   protected $palo;
+   protected $numero;
+
+   public function __construct($palo,$numero)
+   {      
+        $this->palo = $palo;
+        $this->numero = $numero;
+   }
+
+    // DEVUELVE NOMBRE USUARIO
+    public function getValorCarta()   
+    {
+        switch ($this->numero) 
+        {
+           case "10":
+           case "11":
+           case "12":
+                $puntos=0.5;
+                break;
+            default:
+               $puntos=(int) $numero;
+               break;
+        }             
+        return $puntos;
+    }
+
+    // GUARDA PALO
+    public function setPalo($palo)   
+    {
+         $this->palo=$palo;         
+    }
+
+    // DEVUELVE PALO
+    public function getPalo()   
+    {
+        return $this->palo;
+    }    
+    // GUARDA NÚMERO
+    public function setNumero($numero)   
+    {
+         $this->numero=$numero;         
+    }
+
+    // DEVUELVE NÚMERO
+    public function getNumero()   
+    {
+        return $this->numero;
+    }  
+ }
+
+
+ class Jugador
+{
+   // ATRIBUTOS
+   public $nombre="";
+   public $jugada="";
+
+   public function __construct($nombre)
+   {      
+      $this->nombre=$nombre;
+      $this->jugada=array();
+   }
+
+    // DEVUELBE TRUE SI LA SUMA DE LAS CARTAS > 7.5
+    public function compruebaPasa()   
+    {
+      if ($this->compruebaJugada()>7.5)
+         return true;
+         else
+         return false; 
+    }
+    
+    // DEVUELBE ACTUAL PUNTUACIÓN
+    public function compruebaJugada()   
+    {
+        $puntos=0;
+
+        foreach($this->jugada as $carta)
+          {
+            $puntos+=$carta->getValorCarta();              
+          }
+        return $puntos;
+       
+    }
+
+    // GUARDA NOMBRE USUARIO
+    public function setNombreUsuario($nombre)   
+    {
+         $this->nombre=$nombre;         
+    }
+
+    // DEVUELVE NOMBRE USUARIO
+    public function getNombreUsuario()   
+    {
+        return $this->nombre;
+    }
+    // GUARDA JUGADA
+    public function setJugadaUsuario($jugada)   
+    {
+         $this->jugada=$jugada;         
+    }
+
+    // DEVUELVE JUGADA
+    public function getJugadaUsuario()   
+    {
+        return $this->jugada;
+    }
+ } 
 
  ?>
